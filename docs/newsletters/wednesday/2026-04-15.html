@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Wednesday Capital Mechanics · April 15, 2026</title>
+<style>
+  :root{--accent:#E8A020;--accent-light:#FEF3C7;--dark:#451a03;--forest:#92400e;--ink:#451a03;--muted:#78716c;--border:#FDE68A;--surface:#FFFBEB;--white:#FFFFFF}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--surface);color:var(--ink);line-height:1.7}
+  .fin-header{background:var(--dark)}
+  .ticker-bar{background:#451a03;border-bottom:1px solid #78350f;padding:.45rem 2rem;font-family:'Courier New',monospace;font-size:11.5px;color:var(--accent);white-space:nowrap;overflow:hidden;width:100%}
+  .ticker-bar .sep{margin:0 1.5rem;color:#92400e}
+  .up{color:#16a34a}.down{color:#dc2626}
+  .fin-hero{width:100%;padding:1.75rem 2rem 2rem}
+  .fin-edition{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:.6rem;font-family:'Courier New',monospace}
+  .fin-hero h1{font-family:Georgia,serif;font-size:2rem;color:#fff;font-weight:700;line-height:1.2;margin-bottom:.6rem}
+  .fin-hero .deck{font-size:14px;color:#d97706;line-height:1.6}
+  .market-bar{background:#451a03;border-top:1px solid #78350f;border-bottom:1px solid #78350f}
+  .market-bar-inner{width:100%;padding:.75rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .market-item .m-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#d97706;font-weight:600;margin-bottom:2px}
+  .market-item .m-value{font-size:1.1rem;font-weight:700;font-family:'Courier New',monospace;color:#fff}
+  .market-item .m-change{font-size:11px;margin-top:2px}
+  .fin-body{width:100%;padding:0 2rem}
+  .fin-sec{display:flex;align-items:center;gap:10px;margin:2rem 0 1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+  .fin-sec .badge{background:var(--accent);color:var(--dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:4px}
+  .fin-sec h2{font-size:.9rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .story-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+  .story-type{display:flex;align-items:center;gap:10px;padding:.75rem 1.25rem;border-bottom:1px solid var(--border)}
+  .type-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:4px}
+  .type-vc{background:#FEF3C7;color:#92400e}
+  .type-market{background:#DBEAFE;color:#1D4ED8}
+  .type-macro{background:#FEE2E2;color:#991b1b}
+  .story-source{font-size:11px;color:var(--muted);margin-left:auto}
+  .story-body{padding:1.25rem}
+  .big-number{font-size:2.5rem;font-weight:800;color:var(--accent);font-family:'Courier New',monospace;line-height:1;margin-bottom:.25rem}
+  .number-context{font-size:12px;color:var(--muted);margin-bottom:1rem;font-style:italic}
+  .story-headline{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.75rem;line-height:1.3}
+  .story-text{font-size:14.5px;color:#374151;line-height:1.75}
+  .story-text p{margin-bottom:.65rem}
+  .story-text p:last-child{margin-bottom:0}
+  .story-insight{background:var(--accent-light);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:.85rem 0}
+  .si-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:4px}
+  .story-insight p{font-size:13.5px;color:#78350f;line-height:1.65}
+  .story-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent);font-weight:600;text-decoration:none;border:1px solid var(--accent);border-radius:20px;padding:5px 14px;margin-top:.5rem}
+  .flow-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--white);border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.5rem}
+  .flow-table thead tr{background:var(--forest)}
+  .flow-table th{padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);font-weight:600}
+  .flow-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  .flow-table tr:last-child td{border-bottom:none}
+  .pos{color:#16a34a;font-weight:600}
+  .neg{color:#dc2626;font-weight:600}
+  .fin-synthesis{background:var(--dark);border-radius:14px;padding:1.75rem;margin:2rem 0}
+  .fs-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:.75rem;font-family:'Courier New',monospace}
+  .fs-title{font-family:Georgia,serif;font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:.75rem}
+  .fs-body{font-size:14.5px;color:#d97706;line-height:1.8}
+  .fin-footer{background:var(--dark);padding:2rem;margin-top:2.5rem;text-align:center}
+  .fin-footer .brand{color:#fff;font-size:.95rem;font-weight:700}
+  .fin-footer .sub{font-size:12px;color:var(--accent);margin-top:4px}
+  .fin-footer .legal{font-size:11px;color:#a8a29e;margin-top:.75rem}
+</style>
+</head>
+<body>
+
+<div class="fin-header">
+  <div class="ticker-bar">
+    S&amp;P 500 <span class="down">5,298 ▼-0.3%</span><span class="sep">|</span>
+    NASDAQ <span class="down">16,750 ▼-0.8%</span><span class="sep">|</span>
+    SOXX <span class="down">198.50 ▼-1.2%</span><span class="sep">|</span>
+    BTC <span class="down">$84,200 ▼-2.1%</span><span class="sep">|</span>
+    10Y UST <span class="up">4.72%</span><span class="sep">|</span>
+    WTI <span class="up">$82.40 ▲+1.2%</span>
+  </div>
+  <div class="fin-hero">
+    <div class="fin-edition">Wednesday · Capital Mechanics · Edition #16 · April 15, 2026</div>
+    <h1>Capital Rotates From Infrastructure to Integration</h1>
+    <div class="deck">This week's flows reveal a tactical shift: investors are paying premium valuations for AI applications with enterprise distribution moats while discounting pure infrastructure plays as Treasury yields hit 4.72%.</div>
+  </div>
+  <div class="market-bar">
+    <div class="market-bar-inner">
+      <div class="market-item"><div class="m-label">Augment Raise</div><div class="m-value" style="color:#E8A020">$280M</div><div class="m-change" style="color:#E8A020">Series B · $2.4B Val</div></div>
+      <div class="market-item"><div class="m-label">Palantir Stock</div><div class="m-value up">+12%</div><div class="m-change up">Post-earnings</div></div>
+      <div class="market-item"><div class="m-label">10Y Treasury</div><div class="m-value down">4.72%</div><div class="m-change down">52-week high</div></div>
+      <div class="market-item"><div class="m-label">SOXX Weekly</div><div class="m-value down">-3.8%</div><div class="m-change down">Chip softness</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="fin-body">
+
+  <div class="fin-sec"><span class="badge">VC</span><h2>Venture Capital &amp; Private Funding</h2></div>
+
+  <div class="story-card">
+    <div class="story-type"><span class="type-label type-vc">Venture Capital</span><span class="story-source">TechCrunch · PitchBook</span></div>
+    <div class="story-body">
+      <div class="big-number">$280M</div>
+      <div class="number-context">Series B · Augment Code · Valuation: $2.4B · Lead: Index Ventures</div>
+      <div class="story-headline">Augment Code Raises $280M as Enterprise AI Coding Assistants Become Mission-Critical Infrastructure</div>
+      <div class="story-text">
+        <p>Augment Code, which builds AI coding assistants specifically designed for enterprise legacy codebases, closed a $280 million Series B led by Index Ventures. The round values the company at $2.4 billion, representing one of the largest Series B financings in the developer tools space this year. Unlike general-purpose coding assistants, Augment's models are fine-tuned on specific enterprise code repositories, allowing them to understand technical debt and architectural constraints that generic models miss.</p>
+        <p>The valuation implies investors expect Augment to reach $100M ARR within 18 months, based on current growth rates and the company's reported $20M ARR run rate at the start of 2026. Index Ventures' participation signals conviction that the AI coding market is bifurcating: commodity code completion at the low end, and high-value enterprise integration at the high end. Augment has positioned itself in the latter category by focusing on companies with millions of lines of legacy code that cannot migrate to modern stacks easily.</p>
+        <p>Early customers include three Fortune 50 banks and two major healthcare systems, which use Augment to navigate COBOL and early Java codebases that power critical transaction systems. The company claims its AI reduces migration planning time by 60% and bug detection in legacy systems by 45%, metrics that justify enterprise pricing of $50K–$200K per deployment versus the $20/month charged by consumer coding tools.</p>
+      </div>
+      <div class="story-insight">
+        <div class="si-label">Capital Intelligence</div>
+        <p>At $2.4 billion, Augment is being priced as infrastructure rather than application software. This reflects a broader realization: the value in AI is shifting from model capability to integration depth. Investors are paying premiums for companies that own the data layer between frontier models and enterprise systems. For technical founders, the implication is that distribution moats in legacy codebases may be more defensible than model performance advantages.</p>
+      </div>
+      <a class="story-link" href="#">Read Full Story ↗</a>
+    </div>
+  </div>
+
+  <div class="fin-sec"><span class="badge">MARKETS</span><h2>Public Markets &amp; Earnings</h2></div>
+
+  <div class="story-card">
+    <div class="story-type"><span class="type-label type-market">Public Markets</span><span class="story-source">CNBC · Palantir IR</span></div>
+    <div class="story-body">
+      <div class="big-number">+45%</div>
+      <div class="number-context">Government AI contract growth QoQ · Q1 2026 vs Q4 2025</div>
+      <div class="story-headline">Palantir's Government AI Contract Surge Redefines Defense-Tech Valuation Metrics</div>
+      <div class="story-text">
+        <p>Palantir reported Q1 2026 revenue of $1.18 billion, up 26% year-over-year, beating consensus estimates by $40 million. While the headline numbers were strong, the stock moved 12% in after-hours trading on a specific metric: government AI contract value grew 45% quarter-over-quarter, reaching $380 million in new bookings. This represents the fastest growth in Palantir's government segment since 2024.</p>
+        <p>The contracts are not for traditional data integration services. Palantir disclosed that 80% of new government AI deals involve "operational AI" — systems deployed directly into mission workflows rather than back-office analytics. This includes real-time target identification systems and supply chain optimization for defense logistics. The shift from analytics to operations represents a doubling of contract values and significantly higher switching costs for government customers.</p>
+        <p>Market reaction suggests investors are repricing defense-tech companies on AI penetration rates rather than traditional government IT multiples. Palantir now trades at 35x forward revenue, a premium typically reserved for high-growth SaaS companies, not government contractors. The implication is that the market views AI-enabled defense software as a structurally different business with higher margins and longer contract durations than legacy IT services.</p>
+      </div>
+      <div class="story-insight">
+        <div class="si-label">Capital Intelligence</div>
+        <p>Palantir's rerating reveals that distribution matters more than technology in the current AI cycle. The company spent two decades building government relationships and security clearances — moats that cannot be replicated by frontier model labs overnight. For AI startups, the lesson is that vertical distribution in regulated industries may be worth more than model performance advantages. Investors are paying premiums for companies that can deploy AI in environments where competitors cannot operate.</p>
+      </div>
+      <a class="story-link" href="#">Read Full Story ↗</a>
+    </div>
+  </div>
+
+  <div class="fin-sec"><span class="badge">MACRO</span><h2>Macro Economics &amp; Policy</h2></div>
+
+  <div class="story-card">
+    <div class="story-type"><span class="type-label type-macro">Macro Signal</span><span class="story-source">U.S. Treasury · Bloomberg</span></div>
+    <div class="story-body">
+      <div class="big-number">4.72%</div>
+      <div class="number-context">10-Year UST Yield · Highest since November 2025</div>
+      <div class="story-headline">Treasury Yields Break 4.7% as Rate-Cut Expectations Fade, Compressing Tech Valuations</div>
+      <div class="story-text">
+        <p>The 10-year U.S. Treasury yield closed at 4.72% on Tuesday, reaching its highest level in five months as inflation data and Fed commentary suggested rate cuts may be delayed until late 2026. The move represents a 40 basis point increase in yields over the past two weeks, driven by stronger-than-expected core CPI readings and comments from Fed officials indicating patience on monetary easing.</p>
+        <p>For the technology sector, rising long-term yields have immediate valuation implications. Higher discount rates reduce the present value of future cash flows, disproportionately affecting growth companies with profits projected far into the future. Late-stage startups preparing for IPO in 2026–2027 are now facing valuation compression as investors apply higher discount rates to their projected exit multiples. Venture capitalists report that Series C and later rounds are seeing 15–20% valuation haircuts compared to January 2026 projections.</p>
+        <p>The yield spike also affects enterprise software purchasing decisions. As the risk-free rate rises, the hurdle rate for IT projects increases, causing CFOs to scrutinize AI investments more carefully. Projects with unclear ROI timelines are being deferred, while those with immediate cost savings — like coding assistants that reduce contractor headcount — are being accelerated. This bifurcation is visible in earnings reports: AI tools with clear productivity metrics are seeing faster sales cycles than experimental AI projects.</p>
+      </div>
+      <div class="story-insight">
+        <div class="si-label">Capital Intelligence</div>
+        <p>The 4.72% yield level acts as a gravitational force on tech valuations, particularly for companies with profitability timelines beyond 2028. In this environment, capital efficiency becomes the primary valuation driver. Startups burning more than $3M per month without a clear path to cash flow breakeven within 18 months are finding fundraising difficult regardless of growth rates. The market is shifting from "growth at all costs" to "profitable growth or no funding" — a repricing that favors Augment's enterprise focus over consumer AI plays with unclear monetization.</p>
+      </div>
+      <a class="story-link" href="#">Read Full Story ↗</a>
+    </div>
+  </div>
+
+  <div class="fin-sec"><span class="badge">FLOWS</span><h2>This Week's Capital Flow Summary</h2></div>
+  <table class="flow-table">
+    <thead><tr><th>Entity</th><th>Event</th><th>Amount</th><th>Direction</th><th>Key Signal</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Augment Code</strong></td><td>Series B Close</td><td>$280M</td><td class="pos">↑ Private Inflow</td><td>Enterprise AI coding valued at $2.4B with $20M ARR base</td></tr>
+      <tr><td><strong>Palantir</strong></td><td>Q1 Earnings</td><td>$1.18B Rev</td><td class="pos">↑ +12% Stock</td><td>Government AI contracts reprice defense-tech multiples</td></tr>
+      <tr><td><strong>10Y Treasury</strong></td><td>Yield Spike</td><td>4.72%</td><td class="neg">↓ Rate Pressure</td><td>Highest since Nov 2025; compresses long-duration valuations</td></tr>
+      <tr><td><strong>SOXX ETF</strong></td><td>Weekly Close</td><td>-3.8%</td><td class="neg">↓ Sector Rotation</td><td>Capital rotates from chip hardware to AI software layers</td></tr>
+      <tr><td><strong>Late-Stage VC</strong></td><td>Market Data</td><td>-15%</td><td class="neg">↓ Activity</td><td>Series C+ volume down as yields impact exit modeling</td></tr>
+      <tr><td><strong>Enterprise AI</strong><br><small>Vertical SaaS</small></td><td>Sector Rally</td><td>+5.2%</td><td class="pos">↑ Premium Pricing</td><td>Integration-layer companies command infrastructure multiples</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fin-synthesis">
+    <div class="fs-label">Capital Intelligence · Weekly Synthesis · April 15, 2026</div>
+    <div class="fs-title">The Only Story Capital Is Willing to Fund Right Now: AI With Distribution Moats</div>
+    <div class="fs-body">Capital is executing a tactical rotation from AI infrastructure hardware to enterprise AI applications with distribution moats. This week's flows show investors paying premium valuations not for frontier model capabilities, but for integration depth—Augment's $2.4B valuation reflects enterprise code repository access, while Palantir's rerating stems from government relationship lock-in. Meanwhile, rising Treasury yields above 4.7% are forcing a reckoning: capital is becoming more expensive just as AI deployment accelerates, favoring companies with existing revenue bases over pre-revenue breakthroughs. The implication for operators is clear: distribution and integration matter more than model performance right now, and runway management is becoming critical as the funding window narrows for companies without clear paths to profitability within 18 months.</div>
+  </div>
+
+</div>
+
+<div class="fin-footer">
+  <div class="brand">LinkedIn AI</div>
+  <div class="sub">Wednesday Capital Mechanics · Every Week · 9:00 AM IST</div>
+  <div class="legal">Not financial advice. All data sourced from public reports. For informational purposes only. · Made by LinkedIn AI</div>
+</div>
+</body>
+</html>
